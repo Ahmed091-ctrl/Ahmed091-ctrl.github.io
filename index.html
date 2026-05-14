@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mint Flow — AI Strategy Site</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #d4af37; --bg: #0a0a0a; }
+        body { background-color: var(--bg); color: #f2f2f2; font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.2); }
+        .gold-btn { background: linear-gradient(135deg, #d4af37 0%, #8a6d1d 100%); color: black; font-weight: bold; }
+        /* Customizing the Widget to match Mint Flow */
+        .coinmarketcap-currency-widget { margin-bottom: 20px !important; border-radius: 12px !important; overflow: hidden; border: 1px solid #d4af37 !important; }
+    </style>
+</head>
+<body class="p-4 max-w-md mx-auto">
+
+    <div class="coinmarketcap-currency-widget" 
+         data-currencyid="1" 
+         data-base="USD" 
+         data-secondary="" 
+         data-ticker="true" 
+         data-rank="false" 
+         data-marketcap="false" 
+         data-volume="false" 
+         data-statsticker="true" 
+         data-stats="USD">
+    </div>
+
+    <header class="text-center py-4">
+        <h1 class="text-3xl font-bold tracking-widest text-[#d4af37]" style="font-family: 'Cinzel';">MINT FLOW</h1>
+        <p class="text-[10px] text-gray-500 uppercase tracking-[0.3em] mt-1">AI Content Strategist</p>
+    </header>
+
+    <div class="flex justify-around mb-6 border-b border-gray-800">
+        <button onclick="switchTab('batch')" class="pb-2 text-[10px] uppercase tracking-widest text-yellow-500 border-b-2 border-yellow-500">Batch 20</button>
+        <button onclick="switchTab('reply')" class="pb-2 text-[10px] uppercase tracking-widest text-gray-500">Reply Lab</button>
+    </div>
+
+    <div id="batchSection" class="space-y-4">
+        <button onclick="generateBatch()" class="w-full gold-btn py-4 rounded-xl shadow-lg shadow-yellow-900/20">FORGE TWEET BATCH</button>
+        <div id="output" class="space-y-4"></div>
+    </div>
+
+    <div id="replySection" class="hidden">
+        <textarea id="replyIn" placeholder="Paste tweet text..." class="w-full bg-black glass p-4 rounded-xl text-sm mb-4 h-32"></textarea>
+        <button onclick="alert('Analysis complete: Option 1: professional, Option 2: Witty')" class="w-full gold-btn py-3 rounded-xl">ANALYZE</button>
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            document.getElementById('batchSection').classList.toggle('hidden', tab !== 'batch');
+            document.getElementById('replySection').classList.toggle('hidden', tab !== 'reply');
+        }
+
+        function generateBatch() {
+            const out = document.getElementById('output');
+            out.innerHTML = '';
+            for(let i=1; i<=20; i++) {
+                const tweet = `[Insight] Bitcoin is the mechanical heartbeat of our new digital nature. ₿ #MintFlow #BTC ${i}`;
+                out.innerHTML += `
+                    <div class="glass p-4 rounded-xl relative">
+                        <p class="text-sm">${tweet}</p>
+                        <button onclick="navigator.clipboard.writeText('${tweet}'); alert('Copied!')" class="mt-2 text-[10px] text-yellow-500 font-bold">COPY</button>
+                    </div>`;
+            }
+        }
+    </script>
+</body>
+</html>
